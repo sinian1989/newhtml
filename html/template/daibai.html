@@ -1,0 +1,28 @@
+<div class="daibai" {@if photo} style="background-image:url('http://img.hairbobo.com/${photo}');background-size:100% 100%;" {@else} style=" background: url(images/by.png) no-repeat center center;background-size: 100% 100%;" {@/if}>
+    <div class="con">
+        <ul>
+            <a href="#dbxyjs/${omuid}/${uid}">
+                <li>学院介绍</li>
+            </a>
+            <a href="#dbzxkc/${omuid}/${uid}">
+                <li>最新课程</li>
+            </a>
+            <a href="#dbdstd/${omuid}/${uid}">
+                <li>导师团队</li>
+            </a>
+            <a href="#dbzxtg/${omuid}/${uid}">
+                <li>活动推广</li>
+            </a>
+            <a href="http://my.bobo.so/hair/index.html#poster{@if parseInt(list.oikid)!==0}/${parseInt(list.oikid)}{@/if}">
+                <li>时尚大片</li>
+            </a>
+            <!--<a href="#dbxyhd/${omuid}/${uid}">-->
+            <a href="tel:${call}" class="lxxy">
+                <li>联系学院</li>
+            </a>
+        </ul>
+    </div>
+    <div class="fenxiang">
+        <img src="images/fx.png" alt=""/>
+    </div>
+</div>

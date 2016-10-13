@@ -1,0 +1,61 @@
+<a class="title" href="#classlisttop/${uid}" style="color: #f1781e;font-size: 26px;font-weight: bold;">
+    <img src="images/rqkc.png">
+    2016课程销量TOP10&nbsp;&nbsp;<i class="iconfont icon" data-icon="&#xe600;"></i>
+</a>
+
+<div class="list">
+    {@each goods2 as item, index}
+
+    {@if index === '0'}
+
+    <a href="#detail/${item.id}/${uid}" data-rank="TOP${parseInt(index)+1}">
+        <div class="img">
+            <img src="http://img.hairbobo.com/${item.image}">
+        </div>
+
+        <div class="text">
+            <div class="tit">${item.title}</div>
+            <div class="boot">人气：
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+            </div>
+        </div>
+    </a>
+    {@else}
+
+    <a class="row" href="#detail/${item.id}/${uid}" {@if index<3} data-rank="TOP${parseInt(index)+1}" {@/if}>
+        <div class="col-30">
+            <div class="img">
+                <img src="http://img.hairbobo.com/${item.image}">
+                <!--<img class="lazyload" data-original="http://img.hairbobo.com/${item.image}" src="images/pixel.gif">-->
+            </div>
+        </div>
+        <div class="col-70 text">
+            <div class="tit">${item.title}</div>
+            <div class="boot">
+                人气：
+                {@if index === '1'||index=='2'}
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                {@/if}
+                {@if index === '3'||index=='4'}
+                <i>★</i>
+                <i>★</i>
+                <i>★</i>
+                {@/if}
+                {@if index === '5'||index=='6'}
+                <i>★</i>
+                <i>★</i>
+                {@/if}
+            </div>
+        </div>
+    </a>
+    {@/if}
+    {@/each}
+
+</div>

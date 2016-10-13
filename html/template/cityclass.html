@@ -1,0 +1,86 @@
+<div class="main cityclass">
+    <div class="container">
+        <div class="swiper-container class-show">
+            <ul class="swiper-wrapper" style="${'width:'+ 750*imglist.length +'px'}">
+                {@each imglist as item}
+                <li class="swiper-slide">
+                    <img src="http://img.hairbobo.com/${item}">
+                </li>
+                {@/each}
+            </ul>
+            <div class="dian">
+                <span class="current">&nbsp;</span>
+                <span>&nbsp;</span>
+                <span>&nbsp;</span>
+            </div>
+        </div>
+        <div class="row class-title">
+            <a class="col-10 shaddr" href="{@if addr!==" " }map.html?name=${name}&lon=${lon}&lat=${lat}{@/if}{@if
+            addr==" " }javascript:;{@/if}"></a>
+
+            <a href="{@if addr!==" " }map.html?name=${name}&lon=${lon}&lat=${lat}{@/if}{@if addr==" "
+            }javascript:;{@/if}" class="col-85">${addr}</a>
+            <a href="{@if addr!==" " }map.html?name=${name}&lon=${lon}&lat=${lat}{@/if}{@if addr==" "
+            }javascript:;{@/if}" class="col-5">{@if addr!==" " }&gt;{@/if}</a>
+
+        </div>
+        <div class="row class-title">
+            <a class="col-10 zxtel" href="tel:${call}"></a>
+
+            <div class="col-90">
+                <a href="tel:${call}">咨询电话：${call}</a>
+            </div>
+        </div>
+        <div class="teacher">
+            <div class="col-100 tch_title">
+                <div class="row">
+                    <a class="col-10 tea_pic" href="javascript:;"></a>
+                    <span class="col-90">俱乐部导师</span>
+                </div>
+            </div>
+            <div class="swiper-container1 teach_list">
+
+                <ul class="swiper-wrapper" style="${'width:'+ 750*parseInt(teacherlist.length/4+1) +'px'}">
+                    {@each teacherlist as teacher ,index}
+                    {@if index==0||index%4==0}
+                    <li class="swiper-slide">
+                        {@/if}
+                        <a href="http://my.bobo.so/hair/index.html#detailhair/${teacher.H_UID}">
+                            <div class="tch_id">
+                                <img src="http://img.hairbobo.com/${teacher.H_LOGO}" alt=""/>
+
+                                <div>
+                                    <p>${teacher.H_NICKNAME}</p>
+                                    <span>俱乐部导师</span>
+                                </div>
+                            </div>
+                        </a>
+                        {@if index!=0&&(index%4==3||index==teacherlist.length-1)}
+                    </li>
+                    {@/if}
+                    {@/each}
+                </ul>
+            </div>
+        </div>
+        <div class="teacher tch_btm">
+            <div class="col-100 tch_title">
+                <div class="row">
+                    <a class="col-10 new_pic" href="javascript:;"></a>
+                    <span class="col-90">最新课程</span>
+                </div>
+            </div>
+            {@each list as item}
+            <div class="sunhair">
+                <h4>${item.title}</h4>
+
+                <div class="data">
+                    <span>日期：${item.classbegin}</span>
+                    <a class="enroll-btn${item.classdatecou? '': ' disabled'}"
+                       href="#accounts/${item.id}/${uid}">立即报名</a>
+                </div>
+                <p>讲师：${item.content}</p>
+            </div>
+            {@/each}
+        </div>
+    </div>
+</div>

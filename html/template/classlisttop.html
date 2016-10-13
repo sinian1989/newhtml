@@ -1,0 +1,35 @@
+
+<div class="classlist main" style="padding-top: 0;">
+    <div class="container">
+        <div class="list" style="border-top: 1px solid #ddd;">
+            {@each classlist as item, index}
+            <a class="row" href="#detail/${item.id}/${uid}">
+                <div class="col-25">
+                    <div class="img"><img src="http://img.hairbobo.com/${item.image}"></div>
+                </div>
+                <div class="col-75 text">
+                    <div class="tit">
+                        ${item.title.slice(0,15)}
+                    </div>
+                    <div class="cnt">${item.moneyinfo}</div>
+                    <div class="boot">
+                        {@if item.bobogift!==''&&item.bobogift!==null}
+                        <span class="bbyl">波波有礼</span>
+                        {@/if}
+                        {@if item.gift!==''&&item.gift!==null}
+                        <span class="xyyl">学院有礼</span>
+                        {@/if}
+                        {@if item.vipsellingprice=='0'||item.vipsellingprice==null}
+                        <span class="price">${item.frontmoney}元</span>
+                        {@else}
+                        <span class="price">${item.frontmoney}元/${item.vipsellingprice}天</span>
+                        {@/if}
+                        <span class="city">${item.didname}</span>
+                    </div>
+                </div>
+            </a>
+            {@/each}
+        </div>
+    </div>
+</div>
+

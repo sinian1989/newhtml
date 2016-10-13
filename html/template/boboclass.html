@@ -1,0 +1,47 @@
+<div class="main boboclass">
+	<div class="container">
+		<div class="class-show"><img class="logo" src="images/club_03.jpg"></div>
+		<div class="row class-title">
+			<!--<img class="col-10" src="images/club_07.png" alt=""/>-->
+			<a class="col-10 cla" href="javascript:;"></a>
+			<div class="col-90">
+				俱乐部最新课程
+			</div>
+		</div>
+		{@each list as item}
+		<div class="sunhair" onclick="location.href='#detail/${item.id}/${uid}'">
+		<!--<div class="sunhair" >-->
+			<!--<a href="#detail/${item.id}/${uid}">-->
+			<h3>${item.title}</h3>
+			<div class="data">
+				<span>最近一班：${item.classbegin==null?'暂无':item.classbegin}</span>
+				<!--<a class="enroll-btn">立即查看</a>-->
+			</div>
+			<p>内容：${item.content}</p>
+			<!--</a>-->
+			<div class="row addr">
+				<span class="col-85">地点：${item.didname}</span>
+				<a class="col-15" href="tel:${item.cell}"></a>
+			</div>
+		</div>
+		{@/each}
+		<div class="row class-title">
+			<a class="col-10 fenclub" href="javascript:;"></a>
+			<div class="col-90">
+				波波俱乐部分站
+			</div>
+		</div>
+		<div class="row addrpic">
+			<div class="col-100">
+				<a href="#cityclass/${uid}/af2e84f2-947b-4bbb-8b53-b98ac529c2b5">
+					<img src="images/addrpic_03.png" alt=""/>
+				</a>
+			</div>
+			<div class="col-100">
+				<a href="#cityclass/${uid}/43aa829a-dada-4506-90e3-7818a778d054">
+					<img src="images/addrpic_06.png" alt=""/>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

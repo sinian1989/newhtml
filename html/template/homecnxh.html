@@ -1,0 +1,30 @@
+<a class="title" href="#classlist/${uid}">
+    <img src="images/cnxh.png">
+    <i class="iconfont icon" data-icon="&#xe600;"></i>
+</a>
+
+<div class="list">
+    {@each goods1 as item}
+
+    <a class="row" href="#detail/${item.id}/${uid}">
+        <div class="col-40">
+            <div class="img">
+                <img src="http://img.hairbobo.com/${item.image}">
+                <!--<img class="lazyload" data-original="http://img.hairbobo.com/${item.image}" src="images/pixel.gif">-->
+            </div>
+        </div>
+        <div class="col-60 text">
+            <div class="tit">${item.title}</div>
+            <div class="boot">
+                <!--<span class="time">${item.classdatecou}天</span>-->
+                {@if item.vipsellingprice=='0'||item.vipsellingprice==null}
+                <span class="price">${item.frontmoney}元</span>
+                {@else}
+                <span class="price">${item.frontmoney}元/${item.vipsellingprice}天</span>
+                {@/if}
+            </div>
+        </div>
+    </a>
+    {@/each}
+
+</div>

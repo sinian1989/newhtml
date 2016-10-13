@@ -1,0 +1,22 @@
+{@if banners}
+<a class="title" href="#classlist/${uid}">
+    <img src="images/tbtj.png">
+    <i class="iconfont icon" data-icon="&#xe600;"></i>
+</a>
+
+<div class="list">
+    {@each banners as item}
+
+    <a href="${item.url + uid}">
+        <div class="ad-bg-${item.template.split('-')[0]}-${item.template.split('-')[1]}"
+             style="${item.image=='0'?'': 'background:url(http://img.hairbobo.com/uploadimg' + item.image + ') no-repeat;overflow: hidden;'}">
+            <div class="ad-txt-${item.template.split('-')[2]}">
+                <span class="tit">${item.title}</span>
+                <span class="price">${item.time}</span>
+            </div>
+        </div>
+    </a>
+    {@/each}
+
+</div>
+{@/if}

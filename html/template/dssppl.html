@@ -1,0 +1,196 @@
+<div class="dssppl main">
+	<div class="dssppl-type">
+		<div class="row">
+			<a class="col-33" href="javascript:;">导师详情</a>
+			<a class="col-33" href="javascript:;">课程详情</a>
+			<a class="col-33" href="javascript:;">评价详情</a>
+		</div>
+	</div>
+	<div class="container">
+		<div class="swiper-scrollbar"></div>
+		<div class="swiper-container dssppl-box">
+			<div class="swiper-wrapper" style="width:2250px;">
+				<div class="swiper-slide dssppl-ds">
+					$${tuto}
+				</div>
+				<div class="swiper-slide dssppl-sp">
+					$${cont}
+				</div>
+				<div class="swiper-slide dssppl-pl">
+					{@if !comms.length }
+					暂无评论
+					{@else}
+					<ul class="review-list">
+						{@each comms as item}
+                        {@if !item.reid}
+						<li>
+							<a href="javascript:;" data-id="${item.id}">
+								<div class="top clearfix">
+									<span class="name f-l"><em>${item.nickname}</em></span>
+									<span class="time f-r">${item.date.slice(0, 10)}</span>
+								</div>
+								<div class="cnt">
+									${item.content}
+								</div>
+								<div class="bot clearfix">
+									<span class="good-title f-l">${detail.title}</span>
+									<span class="handle f-r"><i class="reply-btn"></i></span>
+								</div>
+							</a>
+							<ul class="reply-list">
+								{@each comms as son}
+									{@if son.reid === item.id }
+										<li class="reply-item">
+											<a href="javascript:;" data-id="${son.id}">
+												<div class="top clearfix">
+													<span class="name f-l"><em>${son.nickname}</em>  回复  ${item.nickname}</span>
+													<span class="time f-r">${son.date.slice(0, 10)}</span>
+												</div>
+												<div class="cnt">
+													${son.content}
+												</div>
+												<!--<div class="bot clearfix">
+													<span class="handle f-r"><i class="reply-btn"></i></span>
+												</div>-->
+											</a>
+										</li>
+									{@/if}
+								{@/each}
+							</ul>
+						</li>    
+						{@/if}
+						{@/each}
+					</ul>
+					{@/if}
+				</div>
+				<div class="reply-box">
+					<div class="row">
+						<div class="col-80">
+							<textarea class="reply-text" placeholder="输入评论"></textarea>
+						</div>
+						<a class="col-20 reply-submit" href="javascript:;">发送</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--
+	<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.dssppl-type').on('click','a',function(e,data){
+				var _this = $(this);
+				var index = _this.index();
+				var oCntDom = $('.dssppl-cnt').eq(index);
+				_this.addClass('active').siblings().removeClass('active');
+				oCntDom.show().siblings('.dssppl-cnt').hide();
+
+				if(_this.data('type') == 'ajax'){
+					
+					if(!oCntDom.data('get') || data){
+						//已加载过的标记
+						oCntDom.data('get',1);
+						GetShopById();
+					}
+					
+				}
+			});
+
+			//存储回复评论的索引
+			var iReply = 0;
+			//存储被回复人的昵称
+			var sName = '';
+			$('.review-list').on('click', 'li', function() {
+				if($(this).hasClass('reply-item')) return false;
+				reid = $(this).data('id');
+				sName = $(this).children('.top').children('.name').children('em').text();
+				$('.reply-text').html('回复' + sName + ':&nbsp;');
+			});
+
+
+			$('.reply-submit').on('click',function(){
+				var sCnt = $('.reply-text').html().trim();
+
+				if(!sCnt){
+					alert('请输入回复内容');
+					return false;
+				}
+
+				if(sName){
+					var reg = new RegExp("^回复"+sName+":\s*");
+
+					if(!reg.test(sCnt)){
+						sName = '';
+						iReply = 0; 
+					}
+					else{
+						sCnt = sCnt.replace("回复"+sName+':','').trim();
+					}
+				}	
+
+				addContent({
+						url : '/ajax/academy/shopstore.ashx',
+						data :{
+							_do: 17,
+							shcid: iReply,
+							content: sCnt
+						}
+					},function(result){
+
+					if(result === 'error'){
+						alert("发布失败");
+						return false;
+					}
+					switch (parseInt(result)) {
+						case 1:
+							alert("发布成功");
+							$('.dssppl-type').find('a').eq(2).trigger('click',true);
+							$('.reply-text').html();
+							break;
+						case 10:
+							location.href = "/phone/store/error.html";
+							break;
+						default:
+							alert("发布失败");
+							break;
+					}
+				});
+				return false;
+			});
+		});
+
+//添加商品评论
+function addContent(data,callback) {
+/*
+	var userid = getUrlPara("id");
+    if (userid == "share") {
+        return;
+    }
+*/
+	$.ajax({
+
+		url: '/ajax/academy/shopstore.ashx',
+        dataType: 'json',
+		dataType : data,
+		type: 'post',
+
+	}).done(function(result){
+
+		callback(result);
+
+	}).fail(function(){
+
+		callback('error');
+	});
+}
+
+/********去掉字符串前后空格********/
+String.prototype.trim = function() {
+
+    return this.replace(/(^\s*)|(\s*$)/g, "");
+
+} 
+
+	</script>
+-->

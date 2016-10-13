@@ -1,0 +1,355 @@
+<!--<div class="index main">-->
+<div class="index" id="index">
+    <!--<div class="cont">-->
+    <div class="user-info row">
+        <div class="col-20" style="margin-right: 20px;">
+            <a class="user-pic" href="${user.attach ? 'javascript:;' : '#olist/'+uid}">
+                <img src="${user.attach ? '' : 'http://img.hairbobo.com/'}${user.logo}"></a>
+        </div>
+        <div class="col-30">
+            <div class="name">${user.nickname}</div>
+            {@if user.kind === 1}
+            <div class="level">
+                {@if user.attach || user.grade === ''}
+                技术等级：无
+                {@else}
+                我的等级：${'ABCDE'.charAt(user.grade)}级
+                {@/if}
+
+
+            </div>
+            {@/if}
+        </div>
+        <div class="col-45">
+            {@if !user.attach && user.kind === 1}
+
+            <a class="link-pc" href="#evaluating/0/${uid}">自我评测</a>
+            <a class="link-pca" href="${user.attach ? 'javascript:;' : '#olist/'+uid}">我的订单</a>
+            {@/if}
+
+        </div>
+    </div>
+    <div class="class-type row">
+        <a class="col-50" href="#hairschool/${uid}">
+            <img src="images/hzxy.png"></a>
+        <!--<a class="col-50" href="#boboclass/${uid}">-->
+        <a class="col-50" href="https://wap.koudaitong.com/v2/goods/3659sqcllstrd">
+            <img src="images/bbjxy.jpg"></a>
+    </div>
+    <div class="search_ss">
+        <input class="searc" type="text" placeholder="查找课程点这里" />
+        <b></b>
+        <div class="kcb"><span>超级课程表</span><i class="iconfont" data-icon="&#xe603;"></i></div>
+        <div class="filter"><span>高级筛选</span><i class="iconfont" data-icon="&#xe603;"></i></div>
+    </div>
+    <div class="offset_kcb" style="display: none;">
+        <div class="kcb_pop">
+        </div>
+        <div class="kcb_down" data-uid="${uid}">
+            <ul id="mzkc">
+                {@each cw as item, index}
+                <li>{@if item.types.length}
+                    {@each item.types as ite, index}
+                    <!--<a href="#classlist/${uid}" data-date="${item.date}" data-type="${ite.type}">-->
+                    <a href="#classlist/${uid}" data-date="${item.date}" data-type="${ite}">
+                        <img src="images/s${ite}.png" alt="" />
+                    </a>
+                    {@/each}
+                    {@else}
+                    <a href="javascript:;">无</a>
+                    {@/if}
+                </li>
+                {@/each}
+            </ul>
+        </div>
+    </div>
+    <!--<div class="swiper-container txt_banner">-->
+        <!--<div class="laba">-->
+            <!--<img src="images/lA.png" alt="" />-->
+        <!--</div>-->
+        <!--<ul class="swiper-wrapper">-->
+            <!--{@each buy as item, index}-->
+            <!--<li class="swiper-slide">-->
+                <!--<a href="#detail/${item.classid}/${uid}"><b>波波网会员</b>&nbsp;${item.username}&nbsp;<b>关注了</b>&nbsp;<br />-->
+                    <!--<span>${item.classname}</span></a>-->
+            <!--</li>-->
+            <!--{@/each}-->
+        <!--</ul>-->
+    <!--</div>-->
+    <div class="school_banner">
+            {@if showpic.length==2}
+                {@each showpic as item}
+                    {@if item.ouid=='223a9c64-4e59-40ef-80d3-5eeea631b4a1'}
+                    <a href="tel:0371-66988299" class="mid">
+                        <img src="http://img.hairbobo.com${item.relargelogo}" alt=""/>
+                    </a>
+                    {@else}
+                    <a href="#daibai/${item.ouid}/${uid}" class="mid">
+                        <img src="http://img.hairbobo.com${item.relargelogo}" alt=""/>
+                    </a>
+                    {@/if}
+                {@/each}
+            {@else}
+            <a href="#daibai/${showpic.ouid}/${uid}" class="big">
+                <img src="http://img.hairbobo.com${showpic.relargelogo}" alt=""/>
+            </a>
+            {@/if}
+    </div>
+    <div class="top-pop">
+        <div class="sort-items">
+            <a href="javascript:;" data-sort="0">价格从低到高</a>
+            <a href="javascript:;" data-sort="1">价格从高到低</a>
+            <a href="javascript:;" data-sort="-1">默认排序</a>
+        </div>
+        <div class="filter-box filter-type">
+            <div class="menu">
+                筛选
+                <a class="cancle" href="javascript:;" data-level="1">取消</a>
+                <a class="confirm" href="javascript:;" data-level="1">清除选项</a>
+            </div>
+            <ul class="type-list">
+                {@each classtype as item, index}
+                <li class="row" data-key="${item.key}" data-index="${index}">
+                    <div class="col-20 key">${item.name}</div>
+                    <div class="col-80 val-box">
+                        {@if item.select && item.select !== '全部'}
+                        <span class="val active" data-selectid="${item.selectid}">${item.select}</span>
+                        {@else}
+                        <span class="val" data-selectid="-1">全部</span>
+                        {@/if}
+                        <i class="iconfont" data-icon="&#xe600;"></i>
+                    </div>
+                </li>
+                {@/each}
+            </ul>
+            <a class="btn repeat-type" href="javascript:;">确定</a>
+        </div>
+        <div class="filter-box filter-option">
+            <div class="menu menu-option">
+                筛选
+                <a class="cancle" href="javascript:;">取消</a>
+                <a class="confirm" href="javascript:;">确定</a>
+            </div>
+            <div class="option-list">
+                <li class="row">
+                    <div class="col-80">全部</div>
+                    <div class="col-20"><i class="radio checked"></i></div>
+                </li>
+                <li class="row">
+                    <div class="col-80">选项</div>
+                    <div class="col-20"><i class="radio"></i></div>
+                </li>
+            </div>
+        </div>
+    </div>
+    <!--    <div class="allbobo">-->
+    <!--        <a href="#classlist/${uid}/-1/bbyl">-->
+    <!--            <img src="images/allbb.jpg" alt="" /></a>-->
+    <!--    </div>-->
+    <div class="xytg">
+<!--       <a href="#classlist/${uid}/5433d68a-ba6d-48bc-8c97-f9067ff30618">-->
+<!--            <img src="/shop/images/bobo2.jpg" alt="" />-->
+<!--        </a>-->
+    </div>
+    <div class="block rqkc">
+        <a class="title" href="#classlisttop/${uid}" style="color: #f1781e;font-size: 26px;font-weight: bold;">
+            <img src="images/rqkc.png">
+            2016课程销量TOP10&nbsp;&nbsp;<i class="iconfont icon" data-icon="&#xe600;"></i>
+        </a>
+
+        <div class="list">
+            {@each goods2 as item, index}
+
+            {@if index === '0'}
+
+            <a href="#detail/${item.id}/${uid}" data-rank="TOP${parseInt(index)+1}">
+                <div class="img">
+                    <img src="http://img.hairbobo.com/${item.image}">
+                </div>
+
+                <div class="text">
+                    <div class="tit">${item.title}</div>
+                    <div class="boot">人气：
+                        <i>★</i>
+                        <i>★</i>
+                        <i>★</i>
+                        <i>★</i>
+                        <i>★</i>
+                    </div>
+                </div>
+            </a>
+            {@else}
+
+            <a class="row" href="#detail/${item.id}/${uid}" {@if index<3} data-rank="TOP${parseInt(index)+1}" {@/if}>
+            <div class="col-30">
+                <div class="img">
+                    <img src="http://img.hairbobo.com/${item.image}">
+                    <!--<img class="lazyload" data-original="http://img.hairbobo.com/${item.image}" src="images/pixel.gif">-->
+                </div>
+            </div>
+            <div class="col-70 text">
+                <div class="tit">${item.title}</div>
+                <div class="boot">
+                    人气：
+                    {@if index === '1'||index=='2'}
+                    <i>★</i>
+                    <i>★</i>
+                    <i>★</i>
+                    <i>★</i>
+                    {@/if}
+                    {@if index === '3'||index=='4'}
+                    <i>★</i>
+                    <i>★</i>
+                    <i>★</i>
+                    {@/if}
+                    {@if index === '5'||index=='6'}
+                    <i>★</i>
+                    <i>★</i>
+                    {@/if}
+                </div>
+            </div>
+            </a>
+            {@/if}
+            {@/each}
+
+        </div>
+    </div>
+    {@if banners}
+    <div class="block tbtj">
+        <a class="title" href="#classlist/${uid}">
+            <img src="images/tbtj.png">
+            <i class="iconfont icon" data-icon="&#xe600;"></i>
+        </a>
+
+        <div class="list">
+            {@each banners as item}
+
+            <a href="${item.url + uid}">
+                <div class="ad-bg-${item.template.split('-')[0]}-${item.template.split('-')[1]}"
+                     style="${item.image=='0'?'': 'background:url(http://img.hairbobo.com/uploadimg' + item.image + ') no-repeat;overflow: hidden;'}">
+                    <div class="ad-txt-${item.template.split('-')[2]}">
+                        <span class="tit">${item.title}</span>
+                        <span class="price">${item.time}</span>
+                    </div>
+                </div>
+            </a>
+            {@/each}
+
+        </div>
+    </div>
+    {@/if}
+    <div class="block cnxh homecnxh">
+        <a class="title" href="#classlist/${uid}">
+            <img src="images/cnxh.png">
+            <i class="iconfont icon" data-icon="&#xe600;"></i>
+        </a>
+
+        <div class="list">
+            {@each goods1 as item}
+
+            <a class="row" href="#detail/${item.id}/${uid}">
+                <div class="col-40">
+                    <div class="img">
+                        <img src="http://img.hairbobo.com/${item.image}">
+                        <!--<img class="lazyload" data-original="http://img.hairbobo.com/${item.image}" src="images/pixel.gif">-->
+                    </div>
+                </div>
+                <div class="col-60 text">
+                    <div class="tit">${item.title}</div>
+                    <div class="boot">
+                        <!--<span class="time">${item.classdatecou}天</span>-->
+                        {@if item.vipsellingprice=='0'||item.vipsellingprice==null}
+                        <span class="price">${item.frontmoney}元</span>
+                        {@else}
+                        <span class="price">${item.frontmoney}元/${item.vipsellingprice}天</span>
+                        {@/if}
+                    </div>
+                </div>
+            </a>
+            {@/each}
+
+        </div>
+    </div>
+    <div class="block cnxh thkc homethkc">
+    </div>
+    <div class="block xxkc">
+        <a class="title" href="#classlist/${uid}">
+            <img src="images/xxkc.png">
+            <i class="iconfont icon" data-icon="&#xe600;"></i>
+        </a>
+
+        <div class="list" id="list">
+            {@each goods4 as item, index}
+
+            <a class="row" href="#detail/${item.id}/${uid}">
+                <div class="col-25">
+                    <div class="img">
+                        <img src="http://img.hairbobo.com/${item.image}">
+                        <!--<img class="lazyload" data-original="http://img.hairbobo.com/${item.image}" src="images/pixel.gif">-->
+                    </div>
+                </div>
+                <div class="col-75 text">
+                    <div class="tit">
+                        ${item.title.slice(0,15)}
+                    </div>
+                    <div class="cnt">${item.moneyinfo}</div>
+                    <div class="boot">
+                        {@if item.bobogift!==''&&item.bobogift!==null}
+                        <span class="bbyl">波波有礼</span>
+                        {@/if}
+                        {@if item.gift!==''&&item.gift!==null}
+                        <span class="xyyl">学院有礼</span>
+                        {@/if}
+                        {@if item.vipsellingprice=='0'||item.vipsellingprice==null}
+                        <span class="price">${item.frontmoney}元</span>
+                        {@else}
+                        <span class="price">${item.frontmoney}元/${item.vipsellingprice}天</span>
+                        {@/if}
+                        <span class="city">${item.didname}</span>
+                    </div>
+                </div>
+            </a>
+            {@/each}
+
+        </div>
+        <!--<div class="sljz">上拉加载更多</div>-->
+    </div>
+    <div class="wd_hd" style="display: none;">
+        <a class="wddd" href="${user.attach ? 'javascript:;' : '#olist/'+uid}">
+            <img src="images/wddd.png" alt="" />
+        </a>
+        <a class="hddb" href="javascript:;">
+            <img src="images/hddb.png" alt="" />
+        </a>
+    </div>
+    <!--</div>-->
+</div>
+<script type="text/template" id="tmp-type">
+    {@-each list as item, index}
+    <li class="row" data-key="$-{item.key}" data-index="$-{index}">
+        <div class="col-20 key">$-{item.name}</div>
+        <div class="col-80 val-box">
+            {@-if item.select && item.select !== '全部'}
+            <span class="val active" data-selectid="$-{item.selectid}">$-{item.select}</span>
+            {@-e-l-s-e}
+            <span class="val" data-selectid="-1">全部</span>
+            {@-/if}
+            <i class="iconfont" data-icon="&#xe600;"></i>
+        </div>
+    </li>
+    {@-/each}
+</script>
+<script type="text/template" id="tmp-option">
+    {@-each list as item, index}
+    <li class="row" data-id="$-{item.id}" data-index="$-{index}">
+        <div class="col-80 val">$-{item.val}</div>
+        <div class="col-20">
+            <i
+                class="radio$-{ item.val === select ? ' checked' : ''}$-{ (item.val === '全部' && !select) ? ' checked' : ''}"></i>
+        </div>
+    </li>
+    {@-/each}
+</script>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

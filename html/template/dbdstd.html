@@ -1,0 +1,34 @@
+<div id="content1" class="team">
+    {@if zongtch!==null}
+    <div class="top_ppo">
+
+        <i>
+            <a href="http://my.bobo.so/hair/index.html#detailhair/${tchone.huid}">
+                <img src="http://img.hairbobo.com/${tchone.logo}" alt=""/>
+            </a>
+        </i>
+
+        <div>
+            <h4>${tchone.name}(创办人)</h4>
+
+            <p class="xiaoz">校长</p>
+
+            <!--<p>${tchone.name}-创办人</p>-->
+            <span>${tchone.about}</span>
+        </div>
+    </div>
+    <div class="more_tch">
+        <h3>讲师团队</h3>
+        <ul>
+            {@each moretch as item}
+            <li>
+                <a href="http://my.bobo.so/hair/index.html#detailhair/${item.huid}">
+                    <img src="http://img.hairbobo.com/${item.logo}" alt=""/>
+                </a>
+                <p>${item.name}</p>
+            </li>
+            {@/each}
+        </ul>
+    </div>
+    {@/if}
+</div>

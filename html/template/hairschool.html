@@ -1,0 +1,48 @@
+<div class="main hairschool">
+    <div class="big_pic">
+        {@each biglist as item}
+        <a href="#daibai/${item.ouid}/${uid}" class="acl">
+            <img src="http://img.hairbobo.com${item.relargelogo}" alt=""/>
+        </a>
+        {@/each}
+    </div>
+    <div class="sm_pic">
+        {@each smlist as item}
+        {@if item.ouid=='223a9c64-4e59-40ef-80d3-5eeea631b4a1'}
+        <a href="tel:0371-66988299" class="ddjl">
+            <img src="http://img.hairbobo.com${item.relargelogo}" alt=""/>
+        </a>
+        {@else}
+        <a href="#daibai/${item.ouid}/${uid}" class="acl">
+            <img src="http://img.hairbobo.com${item.relargelogo}" alt=""/>
+        </a>
+        {@/if}
+        {@/each}
+        <!--<a href="javascript:;">-->
+            <!--<img src="images/last.jpg" alt=""/>-->
+        <!--</a>-->
+    </div>
+    <div class="xwyd">
+        {@if zuixiao!==null}
+        {@each zuixiao as item}
+        <a href="#daibai/${item.ouid}/${uid}" class="acl">
+            <img src="http://img.hairbobo.com${item.relargelogo}" alt=""/>
+        </a>
+        {@/each}
+        {@else}
+        <a href="javascript:;">
+            <img src="images/xw.png" alt=""/>
+        </a>
+        {@/if}
+        <a href="javascript:;">
+            <img src="images/xw.png" alt=""/>
+        </a>
+        <a href="javascript:;">
+            <img src="images/xw.png" alt=""/>
+        </a>
+        <a href="javascript:;">
+            <img src="images/xw.png" alt=""/>
+        </a>
+
+    </div>
+</div>

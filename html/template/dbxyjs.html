@@ -1,0 +1,53 @@
+<div id="content0" class="jigou" style="display: block">
+    <div class="zixun">
+        <a href="tel:${call}">
+            <img src="images/daibai/ph.png" alt=""/>
+        </a>
+    </div>
+    <div class="top_ct">
+        <div class="swiper-container banner">
+            <ul class="swiper-wrapper" style="${'width:'+ 750*imglist.length +'px'}">
+                {@each imglist as item}
+                <li class="swiper-slide">
+                    <img src="http://img.hairbobo.com${item}" alt=""/>
+                </li>
+                {@/each}
+            </ul>
+            <div class="dian">
+                <span></span>
+            </div>
+        </div>
+        <div class="row class-title">
+            <a class="col-10 shaddr" href="{@if addr!==''}map.html?name=${name}&lon=${lon}&lat=${lat}{@/if}{@if
+            addr=='' }javascript:;{@/if}"></a>
+
+            <a href="{@if addr!=='' }map.html?name=${name}&lon=${lon}&lat=${lat}{@/if}{@if addr==''
+            }javascript:;{@/if}" class="col-85">${addr}</a>
+            <a href="{@if addr!=='' }map.html?name=${name}&lon=${lon}&lat=${lat}{@/if}{@if addr==''
+            }javascript:;{@/if}" class="col-5">{@if addr!==" " }&gt;{@/if}</a>
+
+        </div>
+        <div class="row class-title">
+            <a class="col-10 zxtel" href="tel:${call}"></a>
+
+            <div class="col-90">
+                <a class="phone" href="tel:${call}">${call}</a>
+            </div>
+        </div>
+    </div>
+    <div class="btm_ct">
+        <ul>
+            <li>
+                <a href="javascript:;">
+                    <img src="images/daibai/jj.png" alt=""/>
+                    <span>简介</span>
+                    <b></b>
+                </a>
+
+                <div class="word">
+                    ${list.sunmary}
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

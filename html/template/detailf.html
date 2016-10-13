@@ -1,0 +1,164 @@
+<div class="main detail">
+    <div class="container">
+        <div class="swiper-container banners">
+            <ul class="swiper-wrapper" style="${'width:'+ 750*detail.images.split(',').length +'px'}">
+                {@each detail.images.split(',') as item}
+                <li class="swiper-slide">
+                    <img src="http://img.hairbobo.com${item}">
+                </li>
+                {@/each}
+            </ul>
+            <div class="swiper-pagination"></div>
+            <div class="detail-top">
+                <a id="alike" class="one${detail.iflike==1 ? ' current' : ''}" href="javascript:;">${detail.like}</a>
+                <a id="afav" class="two${detail.ifFav==1 ? ' current' : ''}" href="javascript:;"></a>
+                <a id="classb" class="three" href="tt://share?npid=0&amp;npname=我觉得${detail.title}非常赞，感兴趣的去看看哦~&amp;photo=http://img.hairbobo.com${detail.image}&amp;kind=-1&amp;url=${link}"></a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>${detail.title}</h1>
+            <div class="yh_price">
+                <!--<span class="th">¥&nbsp;&nbsp;<b>${detail.sellingprice}</b>&nbsp;&nbsp;定金</span>-->
+                {@if detail.vipsellingprice=='0'||detail.vipsellingprice==null}
+                <span class="th">¥&nbsp;&nbsp;<b>${detail.frontmoney}</b></span>
+                {@else}
+                <span class="th">¥&nbsp;&nbsp;<b>${detail.frontmoney}</b>&nbsp;&nbsp;/${detail.vipsellingprice}天</span>
+                {@/if}
+                <span class="sc">市场价格：${detail.listprice}</span>
+            </div>
+            <div class="yhxx">
+                <span class="label">优惠信息</span>
+                <span class="shrq">${detail.moneyinfo}</span>
+            </div>
+            {@if detail.bobogift!==''&&detail.bobogift!==null}
+            <div class="yhxx xj">
+                <span class="label" style="color:#ec4243;">波波有礼</span>
+                <span class="shrq" style="color:#ec4243;">${detail.bobogift}</span>
+            </div>
+            {@/if}
+            {@if detail.gift!==''&&detail.gift!==null}
+            <div class="yhxx xj">
+                <span class="label" style="color:#3f48cc;">学院有礼</span>
+                <span class="shrq" style="color:#3f48cc;">${detail.gift}</span>
+            </div>
+            {@/if}
+            <div class="yhxx xj">
+                <span class="label">适合学员</span>
+                <span class="shrq">$${peo}</span>
+            </div>
+
+        </div>
+        <div class="gz_detail">
+            <a href="#dssppl/${id}/1${uid ? ('/'+uid) : ''}">
+                <img src="images/del_03.jpg" alt=""/>
+                <span>导师详情<b>Teacher</b></span>
+            </a>
+            <a href="#dssppl/${id}/2${uid ? ('/'+uid) : ''}">
+                <img src="images/del_05.jpg" alt=""/>
+                <span>商品详情<b>Details</b></span>
+            </a>
+            <a href="#dssppl/${id}/3${uid ? ('/'+uid) : ''}">
+                <img src="images/del_07.jpg" alt=""/>
+                <span>评价(<i>${detail.commentcou}</i>)<b>Comments</b></span></a>
+        </div>
+        <div class="content">
+            <div class="count">
+                <span class="label">销&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;量</span>
+                <span>${detail.sold}</span>
+            </div>
+            <!--<div class="count" style="padding-top: 20px;">-->
+            <!--<span class="label">学校地址</span>-->
+            <!--<a class="ar shrq" >-->
+            <!--${detail.oname }-->
+            <!--<p style="margin-bottom: 0">${detail.oaddress }</p>-->
+            <!--</a>-->
+            <!--</div>-->
+            <div class="addr">
+                <span class="label">上课地址</span>
+                <a class="ar shrq" href="{@if detail.lon&&detail.lat}map.html?name=${ detail.classaddress }&lon=${detail.lon}&lat=${detail.lat} {@else} javascript:;{@/if}">
+                    <p style="margin-top: 0;">${detail.oname }</p>
+                    ${detail.classaddress}
+                </a>
+            </div>
+        </div>
+        <div class="content con_last">
+            <div class='count'>
+                <span class="label">住&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;宿</span>
+                <span class="shrq">${detail.stay}</span>
+            </div>
+            <div class="qt">
+                <span class="label">其它费用</span>
+                <span class="shrq">${detail.cost}</span>
+            </div>
+            <div class="gj">
+                <p>上课需带工具：</p>
+                <span>${detail.crowd}</span>
+            </div>
+        </div>
+        <div class="content kbsj">
+            <div class="date">
+                <span class="label">开班时间</span>
+                <span class="deposit-date"></span>
+                <a class="selectdate" href="javascript:;">
+                    选择上课时间
+                    <i class="iconfont icon" data-icon="&#xe600;"></i>
+                </a>
+            </div>
+            <div class="kcsc">
+                <span class="label">课程时长</span>
+                {@if detail.vipsellingprice=='0'||detail.vipsellingprice==null}
+                <span class="shrq">不固定</span>
+                {@else}
+                <span class="shrq">${detail.vipsellingprice}天</span>
+                {@/if}
+            </div>
+            <div class="gmsl">
+                <span class="label">购买数量</span>
+                <a class="minus" href="javascript:;"></a>
+                <span class="onum">1</span>
+                <a class="plus" href="javascript:;"></a>
+            </div>
+            <!--<div class="addr" style="line-height: 40px;">-->
+            <!--<span class="dj">定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金</span>-->
+            <!--<span style="color: #ec4243;font-size: 30px;">¥${detail.sellingprice}</span>-->
+            <!--<a class="what_dj" href="javascript:;">-->
+            <!--什么是定金-->
+            <!--<img src="images/gm_05.jpg" alt=""/>-->
+            <!--</a>-->
+            <!--</div>-->
+        </div>
+    </div>
+    <div class="detail-lg">
+        <span><img src="images/dtllg.png" alt=""/></span>波波网专业教育推荐课程
+    </div>
+    <a href="tel:${detail.cell}" class="call">联系学院</a>
+    <div class="zezao" style="display: none;"></div>
+    <div class="poptell" style="display: none;">
+        <h2>请填写您的手机号码</h2>
+        <input type="text" maxlength="11" placeholder="手机号" />
+        <a href="javascript:;" class="phone"><span>确认手机号码</span><span class="lxw">请学院致电联系我</span></a>
+    </div>
+    <div class="detail-bottom row">
+        <!--<a class="link-qq col-20" href="http://wpa.qq.com/msgrd?v=3&uin=2058003621&site=qq&menu=yes">在线咨询</a>-->
+        {@if clubid !== '56ba94e9-013c-40d2-937d-ea185460fafd'}
+        <a class="link-zy col-20" href="#daibai/${clubid}/${uid}">学院主页</a>
+        <a class="link-qq col-20" href="javascript:;">更多课程</a>
+        <a class="link-tel col-20" href="javascript:;">请联系我</a>
+        <div class="col-40">
+            <a class="buy-btn f-r" href="#accounts/${id}/${uid}"><div class="dt_width"><div class="other_div"><p>支付</p>定金</div><div class="rgt_div"><i>￥</i>${detail.sellingprice}</div></div></a>
+        </div>
+        {@else}
+        <a class="link-qq col-20" href="javascript:;">更多课程</a>
+        <a class="link-tel col-20" href="javascript:;">请联系我</a>
+        <div class="col-60">
+            <a class="buy-btn f-r" href="#accounts/${id}/${uid}"><div class="dt_width"><div class="other_div"><p>支付</p>定金</div><div class="rgt_div"><i>￥</i>${detail.sellingprice}</div></div></a>
+        </div>
+        {@/if}
+    </div>
+    <div id="scroll-date" class="date-box">
+        <div class="scroll">
+            <div id="date"></div>
+            <a class="confrim-date" href="javascript:;">确定</a>
+        </div>
+    </div>
+</div>

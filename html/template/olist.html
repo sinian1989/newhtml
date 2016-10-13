@@ -1,0 +1,27 @@
+<div class="orders main">
+	<div class="order-type">
+		{@each i in range(0, 3)}
+			{@if typeof index !== 'undefined'}
+		        <a class="${i===index ? 'active' : ''}" href="javascript:;">${['未付款', '已付款', '全部订单'][i]}</a>
+		    {@else}
+		        <a class="${i===2 ? 'active' : ''}" href="javascript:;">${['未付款', '已付款', '全部订单'][i]}</a>
+		    {@/if}
+		{@/each}
+	</div>
+	<div class="container">
+		<ul class="order-list">
+			{@each list as item}
+				<li>
+					<a href="#odetail/${item.moneyno}">
+						<span class="label">课程名称：</span>${item.shcname}<br/>
+						<span class="label">订单编号：</span>${item.moneyno}<br>
+						<span class="label">支付方式：</span>${['','支付宝','微信'][item.paytype]}<br>
+						<span class="label">下单时间：</span>${item.date}<br>
+						<span class="label">总金额：</span><span class="high-light">¥ ${item.money}</span>
+					</a>
+					<div class="order-state"><span class="label">订单状态：</span><span class="high-light">${['已取消','未付款','已付款'][item.status]}</span></div>
+				</li>
+			{@/each}
+		</ul>
+	</div>
+</div>

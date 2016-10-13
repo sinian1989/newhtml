@@ -1,0 +1,23 @@
+<div id="content3" class="member">
+    {@if member!==0}
+    {@each member as item}
+    <div class="back">
+        <div class="top">
+            <a href="http://my.bobo.so/hair/index.html#detailhair/${item.uid}">
+                <img src="http://img.hairbobo.com/${item.logo}" alt=""/>
+            </a>
+            <span>${item.name}</span>
+            <span class="data">${item.cdate}</span>
+        </div>
+        <div class="mid">
+            ${item.content}
+        </div>
+        <div class="btm">
+            <span class="hf">学院回复：</span>
+            <p class="huifu">${item.brecontent}</p>
+        </div>
+    </div>
+    {@/each}
+    {@/if}
+</div>
+<div class="sljz">上拉加载更多</div>

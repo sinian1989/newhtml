@@ -1,0 +1,41 @@
+<div class="main evaluating">
+	<div class="qas-box">
+		<div class="container">
+			{@if idx === 0}
+				<div class="tit">认真实情填写，了解自己的专业级别，确定你的努力方向，制定你的成长目标，实现自己的理想！</div>
+				<div class="basic">
+					<form class="basic-form">
+						<input class="name" type="text" name="name" value="${basic.name}">
+						<input class="age" type="text" name="age" value="${basic.age}">
+						<div class="sex">
+							<label class="male"><input type="radio" name="sex" value="0" ${basic.sex === 0 ? 'checked' : ''}><i></i></label>
+							<label class="female"><input type="radio" name="sex" value="1" ${basic.sex === 1 ? 'checked' : ''}><i></i></label>
+						</div>
+						<div class="job">
+							{@each jobs as item}
+							<label><input type="radio" name="job" value="${item}" ${basic.sex === item ? 'checked' : ''}><span>${item}</span></label>
+							{@/each}
+						</div>
+					</form>
+				</div>
+				<a class="save-basic" href="#evaluating/${parseInt(idx)+1}/${uid}"></a>
+			{@else if idx === len}
+				<div class="tit">测试结果：${'ABCDE'.charAt(level)}</div>
+				<div class="info">$${['A级<br>波波姐提醒你------学习无止境，励精图治方能长盛不衰！','B级<br>波波姐提醒你------不要骄傲，停止不前你会变成羊！','C级<br>波波姐提醒你------不想被人骑，继续努力学习吧！','D级<br>波波姐提醒你------努力学习，才能知道外面的世界很精彩！','E级<br>波波姐提醒你------拼命学习，快快向前跑吧！'][level]}</div>
+				<a class="link-index" href="#index/${uid}">
+					<span>看看波波网为您量身推荐的课程吧！</span><br>
+					<img src="images/evaluating/end.png">
+				</a>
+			{@else}
+				<div class="tit">${qa.title}</div>
+				<ul class="list">
+					{@each qa.option as item, index}
+						<li class="${index == active ? 'active': ''}">${'ABCDE'.charAt(index)}：${item}</li>
+					{@/each}
+				</ul>
+				<a class="next" href="#evaluating/${parseInt(idx)+1}/${uid}"></a>
+				<a class="back" href="#index/${uid}">退出测评</a>
+			{@/if}
+		</div>
+	</div>
+</div>

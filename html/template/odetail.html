@@ -1,0 +1,81 @@
+<div class="order-detail main">
+    <div class="container">
+        {@if detail.status == 2&&isbobo}
+        <div class="zez"></div>
+        <div class="tsxx">
+            <h2>提示信息：</h2>
+            <div>感谢通过波波网购买课程！您的“进修历史”经验值又有新的提升啦，是不是分享给好友炫耀一下？</div>
+            <a href="javascript:;" class="yes">是</a>
+            <a href="javascript:;" class="no">否</a>
+        </div>
+        {@/if}
+        <div class="order-block clearfix">
+            <span class="label f-l">订单编号：${oid}</span>
+            <span class="high-light f-r">${['已取消','未付款','已付款'][detail.status]}</span>
+        </div>
+        <div class="order-block clearfix">
+            <span class="f-l">${detail.name}</span>
+            <span class="f-r" name='tel'>${detail.tel}</span>
+        </div>
+        <div class="order-block clearfix">
+            <h3>商品清单</h3>
+            <ul class="order-goods">
+                <li>
+                    <a class="clearfix" href="#detail/${detail.shcid}/${detail.uid}">
+                        <img class="good-img f-l" src="http://img.hairbobo.com/${detail.puinfo.image}">
+                        <div class="good-title f-l">
+                            ${detail.puinfo.title}
+
+                            <span style="display: block; margin-top: 8px;">购买数量：${detail.num}</span>
+                            <span class="good-sale">开课时间：${detail.classdate}</span>
+                        </div>
+                        <span class="good-price f-r">¥${detail.puinfo.kind === 0 ? 0 : detail.puinfo.sellingprice}</span>
+                    </a>
+                </li>
+            </ul>
+            <h3>订单信息</h3>
+            <ul class="order-info">
+                <li class="clearfix">
+                    <span class="label f-l">支付方式：</span>
+                    <span class="high-light f-r">${['','支付宝','微信'][detail.paytype]}</span>
+                </li>
+                <li class="clearfix">
+                    <span class="label f-l">下单时间：</span>
+                    <span class="high-light f-r">${detail.date}</span>
+                </li>
+                <li class="clearfix">
+                    <span class="label f-l">商品总金额：</span>
+                    <span class="high-light f-r">${detail.money}元</span>
+                </li>
+            </ul>
+        </div>
+        <!--仅在订单未支付时显示-->
+        {@if detail.status === 1}
+	
+        <div class="order-block block-btns">
+            <a class="btn cancel-btn" href="javascript:;">取消订单</a>
+            <a class="btn buy-btn" href="javascript:;">继续支付</a>
+        </div>
+        {@/if}
+
+        {@if detail.distributor!==null&&detail.distributor!==''}
+        <a style="display: block; width: 300px; height: 100px; line-height: 100px; text-align:center;margin: 50px auto; background-color: red; color: #fff; font-size: 38px;" href="/shop/index.html#search/${detail.uid}/${detail.distributor}">返回首页</a>
+        {@else}
+        <a style="display: block; width: 300px; height: 100px; line-height: 100px; text-align:center;margin: 50px auto; background-color: red; color: #fff; font-size: 38px;" href="/shop/index.html#index/${detail.uid}">返回首页</a>
+        {@/if}
+        <div class="pay" style="display: none;">
+            <button class="zhifu" href="javascript:;" >
+                <img src="images/zf.png" alt=""/>
+                支付宝
+            </button>
+            <button class="weixin" href="javascript:;">
+                <img src="images/wx_03.jpg" alt=""/>
+                微信支付
+            </button>
+            <button class="qux" href="javascript:;">取消</button>
+        </div>
+        <div class="zezao" style="display: none;">
+            <p class="tzzf" style="display: none;">跳转支付中...</p>
+        </div>
+    </div>
+</div>

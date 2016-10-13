@@ -1,0 +1,83 @@
+
+<div class="account main">
+	<div class="container">
+		<h3>购买者信息&nbsp;<span>(请如实填写,便于学院与您联系)</span></h3>
+		<form class="account-form">
+			<div class="acc-input">
+				<label for="name">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名</label>
+				<input id="name" type="text" name="name" placeholder="您的姓名" value="${address.name}"><br/>
+				<label for="tel">联系电话</label>
+				<input id="tel" type="text" name="tel" placeholder="您的手机号" value="${address.cell}" maxlength="11">
+				<input type="hidden" name="shcid" value="${id}" id="shcid">
+				<input type="hidden" name="uid" value="${uid}" id="uidm">
+				<input type="hidden" name="num" value="${num}" id="num">
+				<input type="hidden" name="classdate" value="${detail.kind === 0? detail.classbegin : date }" id="classdate">
+				<input type="hidden" name="paytype" value="${paytype}">
+			</div>
+		</form>
+		
+		<div class="acc-title">购买清单</div>
+		<ul class="order-goods acc-goods">
+			<li>
+				{@if detail.kind === 0}
+				<a class="clearfix" href="javascript:;">
+					<img class="good-img f-l" src="http://img.hairbobo.com/${detail.image}">
+					<div class="good-title f-l">
+						${detail.title}
+						<span class="good-sale">${date}开课</span>
+					</div>
+					<span class="good-price f-r">¥0</span>
+				</a>
+				{@else}
+				<a class="clearfix" href="${detail.kind === 0? 'javascript:;' : ('#detail/'+ id + '/' + uid) }">
+					<img class="good-img f-l" src="http://img.hairbobo.com/${detail.image}">
+					<div class="good-title f-l">
+						${detail.title}
+						<span class="good-sale">${date}开课</span>
+					</div>
+					<span class="good-price f-r">¥${detail.kind === 0? 0 : detail.sellingprice }</span>
+				</a>
+				{@/if}
+			</li>
+		</ul>
+		<div class="gm_count">
+			<span>购买数量：<b>×${num}</b></span>
+			<span class="hj">合计：<b>¥${detail.sellingprice*num}</b></span>
+		</div>
+		<div class="aqzf">
+			<i></i>
+			<a href="javascript:;">
+				安全支付（支付宝、微信支付）
+			</a>
+		</div>
+		<div class="sm">
+			<div class="lf">说明：</div>
+			<ul class="rg">
+				<li>1) 本订单支付金额为学费的定金部分;</li>
+				<li>2) 定金支付后，学院将为您保留课程名额;</li>
+				<li>3) 学费的剩余部分，学院会要求您在开课前或开课时支付;</li>
+			</ul>
+		</div>
+		<div class="pay" style="display: none;">
+			<button class="zhifu" href="javascript:;" >
+				<img src="images/zf.png" alt=""/>
+				支付宝
+			</button>
+			<button class="weixin" href="javascript:;">
+				<img src="images/wx_03.jpg" alt=""/>
+				微信支付
+			</button>
+			<button class="qux" href="javascript:;">取消</button>
+		</div>
+		<div class="zezao" style="display: none;">
+			<p class="tzzf" style="display: none;">跳转支付中...</p>
+		</div>
+	</div>
+	<div class="acc-box">
+		{@if detail.kind === 0}
+			<a class="acc-btn" href="javascript:;">立即报名</a>
+		{@else}
+			<a class="acc-btn" href="javascript:;">确认并支付</a>
+		{@/if}
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div id="content2" class="new_class">
+    <ul class="kecheng">
+        {@if classlist!==null}
+        {@each classlist as item}
+        <li>
+            <a href="#detail/${item.id}/${uid}">
+                <div class="class_list">
+                    <img src="http://img.hairbobo.com/${item.images}" alt=""/>
+                    <div class="top">
+                        <h2>${item.title}</h2>
+                        <b>开班时间</b><span>${item.classbegin}</span>
+                    </div>
+                    <div class="btm">特惠价：${item.moneyinfo}</div>
+                    <div class="zezao"></div>
+                </div>
+            </a>
+            <div class="nr">
+                ${item.content}
+            </div>
+            <div class="telph">
+                <a class="bord" href="tel:${item.cell}" data-id="${item.id}">
+                    <img src="images/daibai/tel_05.png" alt=""/>
+                </a>
+                <a class="tiao" href="#detail/${item.id}/${uid}">
+                    <img src="images/daibai/tel_03.png" alt=""/>
+                </a>
+            </div>
+        </li>
+        {@/each}
+        {@/if}
+    </ul>
+</div>

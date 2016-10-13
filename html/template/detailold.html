@@ -1,0 +1,123 @@
+
+<div class="main detail">
+	<div class="container">
+
+		<div class="swiper-container detail-focus">
+			<ul class="swiper-wrapper" style="${'width:'+ 750*detail.images.split(',').length +'px'}">
+				{@each detail.images.split(',') as item}
+				<li class="swiper-slide">
+					<img src="http://img.hairbobo.com${item}">
+				</li>
+				{@/each}
+			</ul>
+			<div class="swiper-pagination"></div>
+			<div class="detail-top">
+				<a id="alike" class="one${detail.iflike==1 ? ' current' : ''}" href="javascript:;">${detail.like}</a>
+				<a id="afav" class="two${detail.ifFav==1 ? ' current' : ''}" href="javascript:;"></a>
+				<a id="classb" class="three" href="tt://share?npid=0&amp;npname=我觉得${detail.title}非常赞，感兴趣的去看看哦~&amp;photo=http://img.hairbobo.com${detail.image}&amp;kind=-1&amp;url=${link}"></a>
+			</div>
+		</div>
+
+		<div class="detail-content">
+			<h1>${detail.title}</h1>
+			<div class="price-box clearfix">
+				<div class="f-l bbj">定金：￥<em>${detail.sellingprice}</em></div>
+				<div class="f-r scj">市场价：￥${detail.listprice}</div>
+			</div>
+			<ul class="detail-block">
+				<li>
+					<div class="label">优惠信息</div>
+					<div style="overflow: hidden;margin-top: 20px;">
+						<b class="info">
+							${detail.moneyinfo}
+						</b>
+						<span>销售量：${detail.sold}</span>
+					</div>
+				</li>
+				<li class="double">
+					<div class="label">购买数量</div>
+					<div class="number"><a class="minus" href="javascript:;">-</a><span class="onum">${detail.total === 0 ? 0 : 1}</span><a class="plus" href="javascript:;">+</a></div>
+
+					<div class="clear"></div>
+					<div class="info surplus">
+						{@if detail.total<=10}
+							{@if detail.total===0}
+								已售完
+							{@else}
+								仅剩<em id="synum">${detail.total}</em>件
+							{@/if}
+						{@/if}
+					</div>
+				</li>
+				<li class="double">
+					<div class="label">开班时间</div>
+					<div class="select-date">选择时间</div>
+					<div class="info deposit-date" style="display:none;"></div>
+				</li>
+				<li>
+					<div class="label">上课地址</div>
+					<div class="info">
+						<a href="{@if detail.lon&&detail.lat}map.html?name=${ detail.classaddress }&lon=${detail.lon}&lat=${detail.lat} {@else} javascript:;{@/if}">
+							${detail.classaddress}
+						</a>
+					</div>
+				</li>
+				<li>
+					<div class="label">上课需带工具</div>
+					<div class="info">
+						${detail.crowd}
+					</div>
+				</li>
+				<li>
+					<div class="label">住宿</div>
+					<div class="info">
+						${detail.stay}
+					</div>
+				</li>
+				<li>
+					<div class="label">其他费用</div>
+					<div class="info">
+						${detail.cost}
+					</div>
+				</li>
+				<li class="has-son">
+					<a href="#dssppl/${id}/1${uid ? ('/'+uid) : ''}">
+						<div class="label">导师详情</div>
+						<div class="info">
+							${detail.tutor}
+						</div>
+					</a>
+				</li>
+				<li class="has-son double">
+					<a href="#dssppl/${id}/2${uid ? ('/'+uid) : ''}"><div class="label">商品详情</div></a>
+				</li>
+				{@if detail.commentcou !== 0}
+					<li class="has-son double">
+						<a href="#dssppl/${id}/3${uid ? ('/'+uid) : ''}"><div class="label">评价详情（<em id="connum">${detail.commentcou}</em>）</div></a>
+					</li>
+				{@else}
+					<li class="double">
+						<div class="label">评价详情（<em id="connum">${detail.commentcou}</em>）</div>
+					</li>
+				{@/if}
+			</ul>
+		</div>
+	</div>
+	<div class="detail-bottom row">
+		<a class="link-qq col-20" href="http://wpa.qq.com/msgrd?v=3&uin=2058003621&site=qq&menu=yes">在线咨询</a>
+		<a class="link-tel col-20" href="tel:${detail.cell}">电话咨询</a>
+		<div class="col-60">
+			{@if detail.total===0 || !uid}
+				<a class="buy-btn disabled f-r" href="javascript:;">暂不销售</a>
+			{@else}
+				<a class="buy-btn f-r" href="#accounts/${id}/${uid}"><i>￥</i>立即购买</a>
+			{@/if}
+		</div>
+	</div>
+	<div id="scroll-date" class="date-box">
+		<div class="scroll">
+			<div id="date"></div>
+			<a class="confrim-date" href="javascript:;">确定</a>
+		</div>
+	</div>
+</div>
